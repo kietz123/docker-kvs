@@ -1,4 +1,5 @@
 From python:3.7.5-slim
+RUN pip install --upgrade pip
 RUN pip install flask==2.1.0 redis==3.3.8
 WORKDIR /src
 COPY ./src/server.py /src/
