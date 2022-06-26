@@ -2,11 +2,17 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_USER = "kietz"
+    DOCKERHUB_PW = "zaqwsx123"
     BUILD_HOST = "root@192.168.56.116"
     PROD_HOST = "root@192.168.56.117"
     BUILD_TIMESTAMP = sh(script: "date +%Y%m%d-%H%M%S", returnStdout: true).trim()
   }
   stages {
+    stage('login') {
+      steps {
+	sh "docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PW}"
+      }
+    }
     stage('Pre Check') {
       steps {
         sh "test -f ~/.docker/config.json"
