@@ -2,15 +2,15 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_USER = "kietz"
-    BUILD_HOST = "root@172.16.0.20"
-    PROD_HOST = "root@172.16.0.30"
+    BUILD_HOST = "root@192.168.56.116"
+    PROD_HOST = "root@192.168.56.117"
     BUILD_TIMESTAMP = sh(script: "date +%Y%m%d-%H%M%S", returnStdout: true).trim()
   }
   stages {
     stage('Pre Check') {
       steps {
-        sh "test -f ~/.docker/config.json"
-        sh "cat ~/.docker/config.json | grep docker.io"
+        //sh "test -f ~/.docker/config.json"
+        //sh "cat ~/.docker/config.json | grep docker.io"
       }
     }
     stage('Build') {
